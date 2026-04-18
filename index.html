@@ -212,8 +212,13 @@ function goToScreen3() {
 
 /* Open card */
 function openCard() {
+    let music = document.getElementById("music");
+    music.volume = 0.5; // softer start
+    music.play();
+
     document.getElementById("screen3").classList.add("hidden");
     document.getElementById("screen4").classList.remove("hidden");
+
     startRoses();
 }
 
@@ -234,6 +239,6 @@ function startRoses() {
 }
 
 </script>
-
+<audio id="music" src="tumsehi.mp3"></audio>
 </body>
 </html>
