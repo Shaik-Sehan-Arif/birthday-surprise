@@ -2,148 +2,237 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday Reha ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Reha 💖</title>
 
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        font-family: 'Segoe UI', sans-serif;
-        background: radial-gradient(circle at top, #1a1a2e, #16213e, #0f3460);
-        color: white;
-        text-align: center;
-    }
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ffd1dc, #ffb6c1);
+    display: flex;
+    justify-content: center;
+}
 
-    h1 {
-        margin-top: 80px;
-        font-size: 50px;
-        animation: glow 2s infinite alternate;
-    }
+/* 📱 Mobile container */
+.container {
+    width: 100%;
+    max-width: 380px;
+    min-height: 100vh;
+}
 
-    @keyframes glow {
-        from { text-shadow: 0 0 10px #fff; }
-        to { text-shadow: 0 0 40px #ff4da6; }
-    }
+/* Card */
+.card {
+    background: #fff5f8;
+    margin: 15px;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(255, 0, 80, 0.15);
+}
 
-    button {
-        padding: 15px 30px;
-        font-size: 18px;
-        border-radius: 30px;
-        border: none;
-        background: linear-gradient(45deg, #ff4da6, #ff758c);
-        color: white;
-        cursor: pointer;
-        margin-top: 20px;
-        box-shadow: 0 0 20px rgba(255,77,166,0.6);
-    }
+/* Title */
+.title {
+    color: #e6005c;
+    font-size: 20px;
+}
 
-    #message {
-        margin-top: 30px;
-        font-size: 24px;
-        white-space: pre-line;
-        width: 70%;
-        margin-left: auto;
-        margin-right: auto;
-    }
+/* Countdown boxes */
+.boxes {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
 
-    .heart {
-        position: absolute;
-        color: #ff4da6;
-        font-size: 20px;
-        animation: floatUp linear infinite;
-    }
+.box {
+    background: #ffe6ee;
+    border-radius: 15px;
+    padding: 10px;
+    width: 70px;
+    color: #cc0052;
+}
 
-    @keyframes floatUp {
-        from { transform: translateY(100vh); opacity: 1; }
-        to { transform: translateY(-10vh); opacity: 0; }
-    }
+/* Loading dots */
+.dots span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #ff3366;
+    border-radius: 50%;
+    margin: 3px;
+    animation: blink 1.4s infinite;
+}
 
-    canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        pointer-events: none;
+.dots span:nth-child(2) { animation-delay: 0.2s; }
+.dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+    0%, 80%, 100% { opacity: 0; }
+    40% { opacity: 1; }
+}
+
+/* Button */
+.btn {
+    margin-top: 20px;
+    padding: 12px 25px;
+    border-radius: 25px;
+    border: none;
+    background: linear-gradient(45deg, #ff3366, #ff004c);
+    color: white;
+    font-size: 16px;
+}
+
+#seconds {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ff004c;
+    transition: 0.3s;
+}
+
+/* Gift card */
+.gift-card {
+    background: linear-gradient(45deg, #ff3366, #ff004c);
+    color: white;
+    padding: 40px;
+    border-radius: 20px;
+    margin: 20px;
+    font-size: 18px;
+}
+
+/* Hidden */
+.hidden { display: none; }
+
+/* 🌹 Roses */
+.rose {
+    position: fixed;
+    top: -10px;
+    font-size: 20px;
+    animation: fallRose linear infinite;
+}
+
+@keyframes fallRose {
+    0% {
+        transform: translateY(-10px) rotate(0deg);
+        opacity: 1;
     }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0.8;
+    }
+}
 </style>
 </head>
 
 <body>
 
-<h1>🎉 Happy Birthday Reha ❤️ 🎂</h1>
+<div class="container">
 
-<button onclick="startSurprise()">Click for Surprise 💖</button>
+<!-- SCREEN 1 -->
+<div id="screen1" class="card">
+    <div class="title">Your Special Day is Almost Here 💕</div>
 
-<div id="message"></div>
+    <div class="boxes">
+        <div class="box">0<br><small>Days 💖</small></div>
+        <div class="box">0<br><small>Hours 🎁</small></div>
+        <div class="box">0<br><small>Minutes 🎂</small></div>
+        <div class="box"><span id="seconds">3</span><br><small>Seconds ⭐</small></div>
+    </div>
 
-<audio id="music" src="https://www2.cs.uic.edu/~i101/SoundFiles/HappyBirthday.wav"></audio>
+    <div>Just a little more... A small gift for my Special person ❤️</div>
 
-<canvas id="confetti"></canvas>
+    <div class="dots">
+        <span></span><span></span><span></span>
+    </div>
+</div>
+
+<!-- SCREEN 2 -->
+<div id="screen2" class="card hidden">
+    <div class="title">Your Special Day is Almost Here 💕</div>
+    <h3>It's time! 🎉</h3>
+    <div>Just a little more... A small gift for my Special person ❤️</div>
+    <button class="btn" onclick="goToScreen3()">For you →</button>
+</div>
+
+<!-- SCREEN 3 -->
+<div id="screen3" class="hidden">
+    <div class="card">
+        <h2 style="color:#ff3366;">Happy Birthday! 🎂✨</h2>
+        <p>To My Rehuu ( My Little Lotus 🪷) 💖</p>
+
+        <div class="gift-card" onclick="openCard()">
+            Tap to open your card 🎁
+        </div>
+
+        <p>May every wish you make today come true...</p>
+    </div>
+</div>
+
+<!-- SCREEN 4 -->
+<div id="screen4" class="card hidden">
+    <h2 style="color:#ff3366;">Happy Birthday! 🎂✨</h2>
+    <p>To My cutest Reha 💖</p>
+
+    <p>
+        Reha sahi may bolna kalletu hay —> you’re my Special person 💖<br>
+        Mije bhot happy si hata tuje khushi si dekhtay heto..infact my bi automatic si happy hojatu...tu,  teray baata, tera behaviour, tera way of everything bhot pure si hatay (Ofcourse Tu Magical ley ✨) ❤️.<br><br>
+        Just allah ku ekich poochtu hay life may tu kosa way or choose karli ki o way  may  tuje full  success and happinesss dena and kyabi problems or difficulties diyejani.....tu best little lotus happy si ho....and thanks jii rehaaa for coming back again after 8 years bhot happy si hay ☺️<br><br>Thank you soo soo much REHA <br>
+        I hope your birthday is full of love, magic, and everything that makes you smile...hastech ho cutieee tu ❤️
+    </p>
+</div>
+
+</div>
 
 <script>
-const text = `Hey Reha 😊
-You are the most beautiful part of my life 💖
-Every moment with you feels special ✨
-I wish your life is filled with happiness, love, and success 🎈
-Keep smiling always 🥰
 
-— From Sehan ❤️`;
+/* Countdown */
+let sec = 3;
 
-function typeEffect(text, i = 0) {
-    if (i < text.length) {
-        document.getElementById("message").innerHTML += text.charAt(i);
-        setTimeout(() => typeEffect(text, i + 1), 40);
+let timer = setInterval(() => {
+    document.getElementById("seconds").innerText = sec;
+
+    if (sec === 0) {
+        clearInterval(timer);
+
+        // small delay so user actually sees "0"
+        setTimeout(() => {
+            document.getElementById("screen1").classList.add("hidden");
+            document.getElementById("screen2").classList.remove("hidden");
+        }, 400);
+
     }
+
+    sec--;
+}, 500);
+
+/* Screen 2 → 3 */
+function goToScreen3() {
+    document.getElementById("screen2").classList.add("hidden");
+    document.getElementById("screen3").classList.remove("hidden");
 }
 
-function startSurprise() {
-    document.getElementById("music").play();
-    typeEffect(text);
-    createHearts();
-    startConfetti();
+/* Open card */
+function openCard() {
+    document.getElementById("screen3").classList.add("hidden");
+    document.getElementById("screen4").classList.remove("hidden");
+    startRoses();
 }
 
-function createHearts() {
+/* 🌹 Roses falling */
+function startRoses() {
     setInterval(() => {
-        let heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "❤️";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
-        document.body.appendChild(heart);
-    }, 300);
+        let r = document.createElement("div");
+        r.className = "rose";
+        r.innerHTML = "🌹";
+
+        r.style.left = Math.random() * 100 + "vw";
+        r.style.animationDuration = (Math.random() * 3 + 4) + "s";
+
+        document.body.appendChild(r);
+
+        setTimeout(() => r.remove(), 7000);
+    }, 250);
 }
 
-// Confetti
-const canvas = document.getElementById("confetti");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let pieces = [];
-
-function startConfetti() {
-    for (let i = 0; i < 150; i++) {
-        pieces.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            size: Math.random() * 5 + 2,
-            speed: Math.random() * 3 + 2
-        });
-    }
-    animateConfetti();
-}
-
-function animateConfetti() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    pieces.forEach(p => {
-        ctx.fillStyle = "hsl(" + Math.random()*360 + ",100%,50%)";
-        ctx.fillRect(p.x, p.y, p.size, p.size);
-        p.y += p.speed;
-        if (p.y > canvas.height) p.y = 0;
-    });
-    requestAnimationFrame(animateConfetti);
-}
 </script>
 
 </body>
